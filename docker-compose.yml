@@ -27,11 +27,25 @@ services:
     environment:
       REDIS_URL: "redis://redis:6379/12"
     ports:
-      - "3000:3000"
+      - "3001:3000"
     depends_on:
       - db
     volumes:
       - ./backend:/backend
+    tty: true
+    stdin_open: true
+
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    depends_on:
+      - backend
     tty: true
     stdin_open: true
 
