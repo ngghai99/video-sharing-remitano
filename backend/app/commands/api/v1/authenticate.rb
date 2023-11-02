@@ -11,7 +11,7 @@ module Api
 
       def call
         user = User.find_by(email: email)
-        unless user.authenticate(password)
+        unless user&.authenticate(password)
           user = User.create!(email: email, password: password)
         end
 
