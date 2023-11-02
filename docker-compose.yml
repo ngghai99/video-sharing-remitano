@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_DB: app_dev
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
+
+  backend:
+    container_name: backend
+    build: ./backend
+    command: [
+      "bundle",
+      "exec",
+      "rails",
+      "server",
+      "-b",
+      "0.0.0.0"
+    ]
+    env_file:
+      - .env
+    environment:
+      REDIS_URL: "redis://redis:6379/12"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/backend
+    tty: true
+    stdin_open: true
+
+  redis:
+    image: redis
+    container_name: bandkend_redis
+    command: [ "redis-server", "--appendonly", "yes" ]
+    ports:
+      - '6380:6379'
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  db-data:
+  bundle:
