@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post "login" => "sessions#create"
       resources :videos
+      resources :users, only: [:show]
     end
   end
 end
