@@ -9,4 +9,13 @@ class Api::V1::VideosController < ApplicationController
       render json: { errors:command.errors }, status: :unprocessable_entity
     end
   end
+
+  def index
+    command = Api::V1::GetVideos.call(current_user, params)
+    if command.success?
+      render json: command.result
+    else
+      render json: { errors:command.errors }, status: :unprocessable_entity
+    end
+  end
 end

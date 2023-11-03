@@ -105,3 +105,11 @@ a {
     color-scheme: dark;
   }
 }
+
+.login-form {
+  width: 700px;
+}
+
+.btn-login {
+  width: 355px;
+}

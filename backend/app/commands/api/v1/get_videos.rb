@@ -5,14 +5,15 @@ module Api
       include ActiveModel::Model
       require 'httparty'
 
-      attr_accessor :link, :info_video, :current_user, :uid
+      attr_reader :params
 
       def initialize(current_user, params = {})
-        @current_user = current_user
+        @params = params
       end
 
       def call
-        return unless current_user.present?
+        videos = Video.all.order(created_at: :desc)
+        { success: true, videos: videos }
         rescue StandardError => e
           { success: false, errors: e.message }
       end
