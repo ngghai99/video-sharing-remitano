@@ -73,8 +73,12 @@ a {
   }
 }
 
+.navbar-toggler{
+  float: right;
+}
+
 .login-form {
-  width: 700px;
+  width: 409px;
 }
 
 .btn-login {
@@ -86,5 +90,27 @@ a {
 }
 
 .logo-nav{
-  max-height: 50px;
+  max-height: 25px;
 }
+
+.custom-iframe {
+  width: 100%;
+}
+
+.custom-iframe {
+  height: 320px;
+}
+
+.nav-custom{
+  display: flow !important;
+}
+
+.login-form{
+  float: right;
+}
+
+#navbarNav{
+  float: right;
+  padding-left: 45px;
+}
+

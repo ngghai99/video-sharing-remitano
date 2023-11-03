@@ -1,4 +1,5 @@
 "use client"
+"use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -7,10 +8,10 @@ const Nav = () => {
   const [loggedIn, setLoggedIn] = useState(storedToken ? true : false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [menuVisible, setMenuVisible] = useState(false);
 
   useEffect(() => {
     const initializeUser = async () => {
-
       if (storedToken) {
         setLoggedIn(true);
         try {
@@ -61,23 +62,33 @@ const Nav = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <img
-        loading="eager"
-        decoding="async"
-        className="logo-nav ms-5"
-        src="/images/logo.svg"
-        alt="Reporter Hugo"
-      />
-      <div className="container-fluid me-5">
-        <a className="navbar-brand" href="#">
+      <div className="container-fluid nav-custom">
+        <img
+          loading="eager"
+          decoding="async"
+          className="logo-nav me-1"
+          src="/images/logo.svg"
+          alt="Reporter Hugo"
+          style={{ paddingBottom: '6px' }}
+        />
+        <a className="navbar-brand pt-1" href="#">
           Funny Movies
         </a>
-        <div className="float-end login-form">
+        <button
+          className="navbar-toggler mb-1"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          onClick={() => setMenuVisible(!menuVisible)}
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className={`collapse navbar-collapse ${menuVisible ? 'show' : ''}`} id="navbarNav">
           {loggedIn ? (
-            <div className="float-end">
-              <span>Hi, {email}!</span>
-              <button className="ms-4 btn btn-outline-success btn-signout" onClick={handleLogout}>Logout</button>
-            </div>
+            <>
+              <span className="navbar-text">Hi, {email}!</span>
+              <button className="ms-2 btn btn-outline-success btn-signout" onClick={handleLogout}>Logout</button>
+            </>
           ) : (
             <form onSubmit={handleLogin} className="d-flex">
               <input
