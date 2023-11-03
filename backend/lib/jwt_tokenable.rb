@@ -8,7 +8,7 @@ class JwtTokenable
     end
 
     def decode_jwt_token(token)
-      decoded_token = JWT.decode(token, Rails.application.secrets.secret_key_base)[0]
+      decoded_token = JWT.decode(token, Rails.application.secrets.secret_key_base)
       decoded_token[0]
     rescue JWT::ExpiredSignature, JWT::DecodeError
       return nil
