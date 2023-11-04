@@ -54,6 +54,7 @@ const Nav = () => {
       localStorage.setItem('accessToken', token);
       setLoggedIn(true);
       setEmail(user.email);
+      window.location.reload();
     } catch (error) {
       console.error('Login Fail:', error);
     }
@@ -63,6 +64,7 @@ const Nav = () => {
     localStorage.removeItem('accessToken');
     setLoggedIn(false);
     setEmail('');
+    window.location.reload();
   };
 
   if (isLoading) {

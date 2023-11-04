@@ -1,7 +1,13 @@
 'use client'
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function ShareMovie() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    const storedToken = localStorage.getItem('accessToken') || null;
+    ((storedToken) && setLoggedIn(true))
+  }, []);
+
   const handleSubmitVideo = async (e) => {
     e.preventDefault();
     const storedToken = localStorage.getItem('accessToken') || null;
@@ -34,23 +40,29 @@ export default function ShareMovie() {
           <div className="card rounded-15">
             <div className="card-header border-0">
               <h3 className="d-flex justify-content-center mt-2">Share A Youtube Movie</h3>
-              <form onSubmit={handleSubmitVideo}>
-                <div className="row mt-4">
-                  <div className="col-md-3">
-                    <label className="d-flex justify-content-center">Youtube URL:</label>
-                  </div>
-                  <div className="col-md-7">
-                    <input
-                      className="form-control"
-                      required
-                      name="videoUrl"
-                    />
-                    <button className="btn btn-outline-success w-100 mt-3" type="submit">
-                      Share
-                    </button>
-                  </div>
-                </div>
-              </form>
+              {
+                (loggedIn) ? (
+                  <form onSubmit={handleSubmitVideo}>
+                    <div className="row mt-4">
+                      <div className="col-md-3">
+                        <label className="d-flex justify-content-center">Youtube URL:</label>
+                      </div>
+                      <div className="col-md-7">
+                        <input
+                          className="form-control"
+                          required
+                          name="videoUrl"
+                        />
+                        <button className="btn btn-outline-success w-100 mt-3" type="submit">
+                          Share
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                ) : (
+                  <p className="text-danger">**You Must Be Login To Use This</p>
+                )
+              }
             </div>
           </div>
         </div>
