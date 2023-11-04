@@ -1,8 +1,8 @@
 "use client"
-"use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { LoadingSpinner } from '@/components'
+import Link from 'next/link'
 
 const Nav = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -24,7 +24,7 @@ const Nav = () => {
 
           const response = await axios.get(`http://localhost:3001/api/v1/users/${userId}`, {
             headers: {
-              Authorization: `Bearer ${storedToken}`,
+              Authorization: storedToken,
             },
           });
 
@@ -70,17 +70,19 @@ const Nav = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-color position-fixed top-0 w-100">
       <div className="container-fluid nav-custom">
-        <img
-          loading="eager"
-          decoding="async"
-          className="logo-nav me-1"
-          src="/images/logo.svg"
-          alt="Reporter Hugo"
-          style={{ paddingBottom: '6px' }}
-        />
-        <a className="navbar-brand pt-1" href="#">
+        <a href="/">
+          <img
+            loading="eager"
+            decoding="async"
+            className="logo-nav me-1"
+            src="/images/logo.svg"
+            alt="Reporter Hugo"
+            style={{ paddingBottom: '6px' }}
+          />
+        </a>
+        <a className="navbar-brand pt-1" href="/">
           Funny Movies
         </a>
         <button
@@ -96,7 +98,8 @@ const Nav = () => {
           {loggedIn ? (
             <>
               <span className="navbar-text">Hi, {email}!</span>
-              <button className="ms-2 btn btn-outline-success btn-signout" onClick={handleLogout}>Logout</button>
+              <Link className="ms-2 btn btn-outline-success btn-share-movie" href="/share-movie">Share a movie</Link>
+              <button className="ms-2 btn btn btn-success btn-signout" onClick={handleLogout}>Logout</button>
             </>
           ) : (
             <form onSubmit={handleLogin} className="d-flex">

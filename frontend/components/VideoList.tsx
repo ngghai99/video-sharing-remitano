@@ -31,9 +31,9 @@ const VideoList = () => {
   }, []);
 
   return (
-    <>
+    <div className="video-list-custom">
       {videos.map(video => (
-        <div className='row d-flex justify-content-center mt-5'>
+        <div className='row d-flex justify-content-center mt-3'>
           <div className='col-md-2'></div>
           <div className='col-md-4'>
             <div className='embed-responsive embed-responsive-16by9 mx-3'>
@@ -51,14 +51,15 @@ const VideoList = () => {
               <a href={video.link} className="text-title" target="_blank">
                 <h2>{video.title}</h2>
               </a>
-              <p>Share by: {video.email} </p>
-              <p>{video.description}</p>
+              <p><strong>Share by:</strong> {video.email} </p>
+              <p><strong>Description:</strong></p>
+              <p className="description-custom">{video.description}</p>
             </div>
           </div>
           <div className='col-md-2'></div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 
