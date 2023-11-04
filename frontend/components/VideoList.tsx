@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import React from 'react'
 import axios from 'axios';
 
-export default function VideoList() {
+const VideoList = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
@@ -11,6 +11,16 @@ export default function VideoList() {
       .then(response => {
         if (response.data.success) {
           setVideos(response.data.videos);
+          response.data.videos.forEach(video => {
+            axios.get(`http://localhost:3001/api/v1/users/${video.user_id}`)
+              .then(userResponse => {
+                video.email = userResponse.data.user.email;
+                setVideos(prevVideos => [...prevVideos]);
+              })
+              .catch(error => {
+                console.error('Error fetching user info:', error);
+              });
+          });
         } else {
           console.error('API response is not an array:', response.data);
         }
@@ -41,6 +51,8 @@ export default function VideoList() {
               <a href={video.link} className="text-title" target="_blank">
                 <h2>{video.title}</h2>
               </a>
+              <p>Share by: {video.email} </p>
+              <p>{video.description}</p>
             </div>
           </div>
           <div className='col-md-2'></div>
@@ -49,3 +61,5 @@ export default function VideoList() {
     </>
   );
 }
+
+export default VideoList;

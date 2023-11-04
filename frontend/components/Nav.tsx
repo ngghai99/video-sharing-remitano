@@ -2,16 +2,18 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { LoadingSpinner } from '@/components'
 
 const Nav = () => {
-  const storedToken = localStorage.getItem('accessToken') || null;
-  const [loggedIn, setLoggedIn] = useState(storedToken ? true : false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [menuVisible, setMenuVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const initializeUser = async () => {
+      const storedToken = localStorage.getItem('accessToken') || null;
       if (storedToken) {
         setLoggedIn(true);
         try {
@@ -31,7 +33,10 @@ const Nav = () => {
         } catch (error) {
           console.error('JWT Error:', error);
         }
+      } else {
+        setLoggedIn(false)
       }
+      setIsLoading(false);
     };
 
     initializeUser();
@@ -59,6 +64,10 @@ const Nav = () => {
     setLoggedIn(false);
     setEmail('');
   };
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
