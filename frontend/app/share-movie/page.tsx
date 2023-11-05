@@ -1,8 +1,11 @@
 'use client'
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function ShareMovie() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const router = useRouter();
+
   useEffect(() => {
     const storedToken = localStorage.getItem('accessToken') || null;
     ((storedToken) && setLoggedIn(true))
@@ -24,7 +27,7 @@ export default function ShareMovie() {
       });
 
       if (response.ok) {
-        window.location.href = '/';
+        router.push('/');
       } else {
         console.error('Something went wrong.');
       }
