@@ -38,6 +38,11 @@ services:
   frontend:
     container_name: frontend
     build: ./frontend
+    command: [
+      "npm",
+      "run",
+      "dev"
+    ]
     volumes:
       - ./frontend:/app
     ports:

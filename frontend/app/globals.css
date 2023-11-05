@@ -170,7 +170,7 @@ a {
 
 .description-custom{
   overflow: scroll !important;
-  max-height: 160px;
+  max-height: 150px;
 }
 
 .show .btn-signout {
@@ -184,3 +184,10 @@ a {
   float: right !important;
 }
 
+.form-login-custom {
+  display: flex;
+}
+
+.show .form-login-custom{
+  display: contents !important;
+}

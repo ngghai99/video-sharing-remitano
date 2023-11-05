@@ -13,7 +13,8 @@ const Nav = () => {
 
   useEffect(() => {
     const initializeUser = async () => {
-      const storedToken = localStorage.getItem('accessToken') || null;
+      const storedToken = localStorage.getItem('accessTokenRemi') || null;
+      console.log(storedToken)
       if (storedToken) {
         setLoggedIn(true);
         try {
@@ -51,7 +52,7 @@ const Nav = () => {
       });
 
       const { token, user } = response.data;
-      localStorage.setItem('accessToken', token);
+      localStorage.setItem('accessTokenRemi', token);
       setLoggedIn(true);
       setEmail(user.email);
       window.location.reload();
@@ -61,7 +62,7 @@ const Nav = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem('accessTokenRemi');
     setLoggedIn(false);
     setEmail('');
     window.location.reload();
@@ -104,7 +105,7 @@ const Nav = () => {
               <button className="ms-2 btn btn btn-success btn-signout" onClick={handleLogout}>Logout</button>
             </>
           ) : (
-            <form onSubmit={handleLogin} className="d-flex">
+            <form onSubmit={handleLogin} className="form-login-custom">
               <input
                 className="form-control me-2"
                 type="email"

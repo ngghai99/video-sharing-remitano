@@ -1,19 +1,18 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 
 export default function ShareMovie() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const router = useRouter();
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('accessToken') || null;
+    const storedToken = localStorage.getItem('accessTokenRemi') || null;
     ((storedToken) && setLoggedIn(true))
   }, []);
 
   const handleSubmitVideo = async (e) => {
     e.preventDefault();
-    const storedToken = localStorage.getItem('accessToken') || null;
+    const storedToken = localStorage.getItem('accessTokenRemi') || null;
     const videoUrl = e.target.elements.videoUrl.value;
 
     try {
@@ -27,9 +26,11 @@ export default function ShareMovie() {
       });
 
       if (response.ok) {
-        router.push('/');
+        setTimeout(function() {
+          window.location.href = '/';
+        }, 500);
       } else {
-        console.error('Something went wrong.');
+        setError(true)
       }
     } catch (error) {
       console.error('Network error. Please try again.');
@@ -56,6 +57,7 @@ export default function ShareMovie() {
                           required
                           name="videoUrl"
                         />
+                        <p className="text-danger">{(error && '**Please Double Check Your Link')}</p>
                         <button className="btn btn-outline-success w-100 mt-3" type="submit">
                           Share
                         </button>

@@ -76,7 +76,13 @@ const VideoList = () => {
               </a>
               <p><strong>Share by:</strong> {video.email} </p>
               <p><strong>Description:</strong></p>
-              <p className="description-custom">{video.description}</p>
+              <p className="description-custom">
+                {video.description.split("\n").map((line, index) => (
+                  <p key={index}>
+                    {line}
+                  </p>
+                ))}
+              </p>
             </div>
           </div>
           <div className='col-md-2'></div>
