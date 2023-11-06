@@ -19,6 +19,7 @@ module Api
         return if info_video.code != 200 || info_video.parsed_response["items"].blank?
         video = current_user.videos.new(title: info_video.parsed_response["items"][0]["snippet"]["title"], description: info_video.parsed_response["items"][0]["snippet"]["description"], link: link, uid: uid)
         video.save!
+        video = video.attributes.merge(email:video.user.email)
         { success: true, video: video }
         rescue StandardError => e
           { success: false, errors: e.message }

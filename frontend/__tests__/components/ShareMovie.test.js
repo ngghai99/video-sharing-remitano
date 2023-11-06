@@ -1,5 +1,5 @@
 import React from 'react';
-import ShareMovie from '../app/share-movie/page';
+import ShareMovie from '../../app/share-movie/page';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 describe('ShareMovie', () => {
@@ -45,7 +45,7 @@ describe('ShareMovie', () => {
     fireEvent.click(shareButton);
 
     await waitFor(() => {
-      expect(window.location.href).toBe('http://localhost/');
+      expect(window.location.href).toBe(process.env.IP_CLIENT_NO_PORT);
     });
   });
 });

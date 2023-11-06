@@ -22,7 +22,7 @@ const Nav = () => {
           const decoded = jwt.verify(storedToken, secretKey);
           const userId = decoded.user_id;
 
-          const response = await axios.get(`http://localhost:3001/api/v1/users/${userId}`, {
+          const response = await axios.get(`${process.env.IP_SERVER}/api/v1/users/${userId}`, {
             headers: {
               Authorization: storedToken,
             },
@@ -45,7 +45,7 @@ const Nav = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/api/v1/login', {
+      const response = await axios.post(`${process.env.IP_SERVER}/api/v1/login`, {
         email,
         password,
       });

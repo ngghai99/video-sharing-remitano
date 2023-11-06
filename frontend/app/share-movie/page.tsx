@@ -16,7 +16,7 @@ export default function ShareMovie() {
     const videoUrl = e.target.elements.videoUrl.value;
 
     try {
-      const response = await fetch('http://localhost:3001/api/v1/videos', {
+      const response = await fetch(`${process.env.IP_SERVER}/api/v1/videos`, {
         method: 'POST',
         headers: {
           Authorization: storedToken,
@@ -28,7 +28,7 @@ export default function ShareMovie() {
       if (response.ok) {
         setTimeout(function() {
           window.location.href = '/';
-        }, 500);
+        }, 1000);
       } else {
         setError(true)
       }

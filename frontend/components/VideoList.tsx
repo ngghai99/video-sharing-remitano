@@ -2,14 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { createConsumer } from '@rails/actioncable';
-import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
-toast.configure({
-  autoClose: 2000,
-  draggable: false,
-  position: toast.POSITION.TOP_LEFT
-})
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
@@ -17,12 +10,11 @@ const VideoList = () => {
   useEffect(() => {
     fetchVideoList();
 
-    const cable = createConsumer('ws://localhost:3001/cable');
+    const cable = createConsumer(process.env.CABLE);
 
     cable.subscriptions.create({ channel: 'VideosChannel' }, {
       received: (data) => {
         if (data.video) {
-          toast(`New Movie: ${data.video.title}`)
           fetchVideoList()
         }
       },
@@ -30,20 +22,10 @@ const VideoList = () => {
   }, []);
 
   const fetchVideoList = () => {
-    axios.get('http://localhost:3001/api/v1/videos')
+    axios.get(`${process.env.IP_SERVER}/api/v1/videos`)
       .then(response => {
         if (response.data.success) {
           setVideos(response.data.videos);
-          response.data.videos.forEach(video => {
-            axios.get(`http://localhost:3001/api/v1/users/${video.user_id}`)
-              .then(userResponse => {
-                video.email = userResponse.data.user.email;
-                setVideos(prevVideos => [...prevVideos]);
-              })
-              .catch(error => {
-                console.error('Error fetching user info:', error);
-              });
-          });
         } else {
           console.error('API response is not an array:', response.data);
         }
@@ -56,7 +38,7 @@ const VideoList = () => {
   return (
     <div className="video-list-custom">
       {videos.map(video => (
-        <div className='row d-flex justify-content-center mt-3'>
+        <div key={video.id} className='video-list row d-flex justify-content-center mt-3' data-testid="video">
           <div className='col-md-2'></div>
           <div className='col-md-4'>
             <div className='embed-responsive embed-responsive-16by9 mx-3'>

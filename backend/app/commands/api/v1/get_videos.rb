@@ -12,7 +12,8 @@ module Api
       end
 
       def call
-        videos = Video.all.order(created_at: :desc)
+        videos = Video.includes(:user).order(created_at: :desc)
+        videos = videos.map { |video| video.attributes.merge(email:video.user.email) }
         { success: true, videos: videos }
         rescue StandardError => e
           { success: false, errors: e.message }

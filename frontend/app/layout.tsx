@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { Header, Nav, Footer } from '@/components'
+import { Header, Nav, NotifyUser, Footer } from '@/components'
 import 'bootstrap/dist/css/bootstrap.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -22,6 +22,7 @@ export default function RootLayout({
       <Header />
       <body suppressHydrationWarning={true} className={inter.className}>
         <Nav />
+        <NotifyUser />
         {children}
         <Footer />
       </body>
