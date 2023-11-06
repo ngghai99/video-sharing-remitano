@@ -12,7 +12,7 @@ module Api
       end
 
       def call
-        user = User.find_by_id(id)
+        user = User.find(id)
         { success: true, user: user }
         rescue StandardError => e
           { success: false, errors: e.message }

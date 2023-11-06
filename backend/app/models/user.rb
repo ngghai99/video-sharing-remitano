@@ -4,7 +4,8 @@ class User < ApplicationRecord
   has_many :videos, dependent: :destroy
 
   before_validation :downcase_email
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, presence: true
+  validates :password, presence: true
 
   def downcase_email
     self.email = email.downcase if email.present?

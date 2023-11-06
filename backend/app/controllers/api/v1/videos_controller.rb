@@ -1,9 +1,9 @@
 class Api::V1::VideosController < ApplicationController
 
   def create
-    render_unauthorized('Token invalid') unless current_user
+    render_unauthorized('Token invalid') and return unless current_user
     command = Api::V1::CreateVideo.call(current_user, params)
-    if command.success?
+    if command.success? && command.result&.fetch(:video, nil).present?
       ActionCable.server.broadcast 'videos', {video: command.result[:video]}
       render json: command.result
     else
