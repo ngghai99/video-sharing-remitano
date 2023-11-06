@@ -1,6 +1,6 @@
 class JwtTokenable
   class << self
-    EXPIRATION_TIME = 7.days.to_i
+    EXPIRATION_TIME = 14.days.to_i
 
     def generate_jwt_token(payload)
       payload[:exp] = Time.now.to_i + EXPIRATION_TIME

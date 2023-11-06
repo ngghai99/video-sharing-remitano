@@ -14,7 +14,6 @@ const Nav = () => {
   useEffect(() => {
     const initializeUser = async () => {
       const storedToken = localStorage.getItem('accessTokenRemi') || null;
-      console.log(storedToken)
       if (storedToken) {
         setLoggedIn(true);
         try {
@@ -32,7 +31,7 @@ const Nav = () => {
           const userEmail = response.data.user.email;
           setEmail(userEmail);
         } catch (error) {
-          console.error('JWT Error:', error);
+          console.log('JWT Error:', error);
         }
       } else {
         setLoggedIn(false)
@@ -57,7 +56,7 @@ const Nav = () => {
       setEmail(user.email);
       window.location.reload();
     } catch (error) {
-      console.error('Login Fail:', error);
+      console.log('Login Fail:', error);
     }
   };
 
@@ -73,7 +72,7 @@ const Nav = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-color position-fixed top-0 w-100">
+    <nav data-testid="nav-component" className="navbar navbar-expand-lg navbar-color position-fixed top-0 w-100">
       <div className="container-fluid nav-custom">
         <a href="/">
           <img
@@ -94,18 +93,19 @@ const Nav = () => {
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
           onClick={() => setMenuVisible(!menuVisible)}
+          data-testid="menu-button"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className={`collapse navbar-collapse ${menuVisible ? 'show' : ''}`} id="navbarNav">
+        <div className={`collapse navbar-collapse ${menuVisible ? 'show' : ''}`} id="navbarNav" data-testid="menu-visible">
           {loggedIn ? (
-            <>
+            <div data-testid="wellcome-user">
               <span className="navbar-text">Hi, {email}!</span>
               <Link className="ms-2 btn btn-outline-success btn-share-movie" href="/share-movie">Share a movie</Link>
-              <button className="ms-2 btn btn btn-success btn-signout" onClick={handleLogout}>Logout</button>
-            </>
+              <button data-testid="logout-button" className="ms-2 btn btn btn-success btn-signout" onClick={handleLogout}>Logout</button>
+            </div>
           ) : (
-            <form onSubmit={handleLogin} className="form-login-custom">
+            <form onSubmit={handleLogin} data-testid="login-form" className="form-login-custom">
               <input
                 className="form-control me-2"
                 type="email"

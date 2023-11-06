@@ -33,12 +33,12 @@ export default function ShareMovie() {
         setError(true)
       }
     } catch (error) {
-      console.error('Network error. Please try again.');
+      console.error('Error. Please try again.');
     }
   };
 
   return (
-    <div className="row share-movie-custom">
+    <div data-testid="share-movie" className="row share-movie-custom">
       <div className="d-flex justify-content-center">
         <div className="col-md-5">
           <div className="card rounded-15">
@@ -46,19 +46,21 @@ export default function ShareMovie() {
               <h3 className="d-flex justify-content-center mt-2">Share A Youtube Movie</h3>
               {
                 (loggedIn) ? (
-                  <form onSubmit={handleSubmitVideo}>
+                  <form data-testid="share-form" onSubmit={handleSubmitVideo}>
                     <div className="row mt-4">
                       <div className="col-md-3">
-                        <label className="d-flex justify-content-center">Youtube URL:</label>
+                        <label htmlFor="videoUrl" className="d-flex justify-content-center">Youtube URL:</label>
                       </div>
                       <div className="col-md-7">
                         <input
                           className="form-control"
                           required
+                          id="videoUrl"
                           name="videoUrl"
+                          data-testid="video-url-input"
                         />
                         <p className="text-danger">{(error && '**Please Double Check Your Link')}</p>
-                        <button className="btn btn-outline-success w-100 mt-3" type="submit">
+                        <button data-testid="share-button" className="btn btn-outline-success w-100 mt-3" type="submit">
                           Share
                         </button>
                       </div>
