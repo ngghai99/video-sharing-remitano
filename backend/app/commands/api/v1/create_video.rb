@@ -15,9 +15,9 @@ module Api
       end
 
       def call
-        return unless current_user.present?
-        return if info_video.code != 200 || info_video["items"].blank?
-        video = current_user.videos.new(title: info_video["items"][0]["snippet"]["title"], description: info_video["items"][0]["snippet"]["description"], link: link, uid: uid)
+        return error_message_current_user_missing unless current_user.present?
+        return if info_video.code != 200 || info_video.parsed_response["items"].blank?
+        video = current_user.videos.new(title: info_video.parsed_response["items"][0]["snippet"]["title"], description: info_video.parsed_response["items"][0]["snippet"]["description"], link: link, uid: uid)
         video.save!
         { success: true, video: video }
         rescue StandardError => e
@@ -53,6 +53,9 @@ module Api
         end
       end
 
+      def error_message_current_user_missing
+        { success: false, errors: 'Current user is missing' }
+      end
     end
   end
 end
