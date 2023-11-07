@@ -44,21 +44,13 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.prod
-    command: [
-      "npm",
-      "run",
-      "dev"
-    ]
-    volumes:
-      - ./frontend:/app
     ports:
       - '80:80'
     env_file:
       - .env
+    stdin_open: true
     depends_on:
       - backend
-    tty: true
-    stdin_open: true
 
   redis:
     image: redis
