@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { LoadingSpinner } from '/components'
+import { LoadingSpinner } from '@/components'
 import Link from 'next/link'
 
 const Nav = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Footer } from '/components'
+import { Footer } from '@/components'
 
 test('renders the footer text correctly', () => {
   const { getByText } = render(<Footer />);

@@ -1,4 +1,7 @@
 module.exports = {
+  experimental: {
+    appDir: true,
+  },
   env: {
     JWT_SECRET: process.env.JWT_SECRET,
     IP_SERVER: process.env.IP_SERVER,
