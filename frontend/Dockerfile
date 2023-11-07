@@ -1,4 +1,3 @@
-# Sử dụng một image base với Node.js
 FROM node:21
 WORKDIR /app
 COPY package*.json ./
