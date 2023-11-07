@@ -3,9 +3,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { createConsumer } from '@rails/actioncable';
 import 'react-toastify/dist/ReactToastify.css'
+interface Video {
+  id: number;
+  uid: string;
+  title: string;
+  email: string;
+  description: string;
+  link: string;
+}
 
 const VideoList = () => {
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState<Video[]>([]);
 
   useEffect(() => {
     fetchVideoList();
@@ -34,6 +42,10 @@ const VideoList = () => {
         console.error('Error fetching video list:', error);
       });
   };
+
+  if (!Array.isArray(videos)) {
+    return null;
+  }
 
   return (
     <div className="video-list-custom">

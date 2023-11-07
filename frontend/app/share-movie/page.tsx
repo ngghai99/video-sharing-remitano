@@ -20,14 +20,17 @@ export default function ShareMovie() {
   const handleSubmitVideo = async (e: React.FormEvent) => {
     e.preventDefault();
     const storedToken = localStorage.getItem('accessTokenRemi') || null;
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+    if (storedToken) {
+      headers.Authorization = storedToken;
+    }
 
     try {
       const response = await fetch(`${process.env.IP_SERVER}/api/v1/videos`, {
         method: 'POST',
-        headers: {
-          Authorization: storedToken,
-          'Content-Type': 'application/json',
-        },
+        headers,
         body: JSON.stringify({ link: videoUrl }),
       });
 

@@ -42,7 +42,7 @@ const Nav = () => {
     initializeUser();
   }, []);
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await axios.post(`${process.env.IP_SERVER}/api/v1/login`, {
