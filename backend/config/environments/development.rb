@@ -13,6 +13,7 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
 
   # Enable server timing
   config.server_timing = true
