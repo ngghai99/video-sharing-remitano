@@ -3,12 +3,15 @@ FROM ruby:3.2.2
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 RUN apt-get install -y redis-server
 
-WORKDIR /usr/src/app
+RUN mkdir /backend
+WORKDIR /backend
 
-COPY Gemfile /usr/src/app/
-COPY Gemfile.lock /usr/src/app/
+CMD service redis-server start
 
-COPY . /usr/src/app
+COPY Gemfile /Gemfile
+COPY Gemfile.lock /Gemfile.lock
+
+COPY . /backend
 RUN bundle install --without development test
 
 EXPOSE 3000
