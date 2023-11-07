@@ -9,7 +9,7 @@ COPY package.json /frontend
 COPY package-lock.json /frontend
 
 RUN npm install
-RUN npm i -g next
+RUN npm i -g next@13.3.4
 RUN next build
 
 FROM nginx:alpine
