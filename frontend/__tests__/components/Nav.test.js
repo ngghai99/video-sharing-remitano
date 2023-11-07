@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { Nav } from '@/components'
+import { Nav } from './../components'
 
 describe('Nav', () => {
   it('renders the component', () => {
