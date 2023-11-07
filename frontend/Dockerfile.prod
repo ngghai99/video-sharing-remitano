@@ -9,7 +9,8 @@ COPY package-lock.json /app
 COPY . /app
 
 RUN npm install
-RUN npm run build
+RUN npm i -g next
+RUN next build
 
 FROM nginx:alpine
 
