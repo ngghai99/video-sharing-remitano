@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - shared_volume:/var/lib/postgres
+      - shared_volume:/var/lib/postgresql/data
 
   backend:
     container_name: backend
