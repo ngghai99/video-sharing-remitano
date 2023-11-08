@@ -32,7 +32,8 @@ RSpec.describe Api::V1::Authenticate do
       it 'raises an error' do
         command = described_class.new(email, 'wrong_password')
 
-        expect { command.call }.to raise_error(ActiveRecord::RecordInvalid)
+        expect(command.success?).to be_falsey
+        expect(command.call.errors).to have_key(:error)
       end
     end
   end

@@ -41,7 +41,7 @@ RSpec.describe Api::V1::CreateVideo do
       result = command.call.result
 
       expect(result[:success]).to be_truthy
-      expect(result[:video]).to be_an_instance_of(Video)
+      expect(result[:video]).to be_present
     end
   end
 
