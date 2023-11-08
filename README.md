@@ -43,22 +43,22 @@
   CABLE=ws://localhost:3001/cable
   ```
 4. How to get YOUTUBE_API_KEY:
-  Step 1: Access https://console.cloud.google.com/apis/dashboard
-  Step 2:
-   <img width="1408" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/5dd4e570-299f-47f1-9fc7-d73158f5ccdb">
-  Step 3:
-   <img width="933" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/83826af7-0392-4ce5-aedf-7468734af9d5">
-  Step 4:
+  Step 1: Access https://console.cloud.google.com/apis/dashboard<br>
+  Step 2:<br>
+   <img width="500" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/5dd4e570-299f-47f1-9fc7-d73158f5ccdb"><br>
+  Step 3:<br>
+   <img width="500" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/83826af7-0392-4ce5-aedf-7468734af9d5"><br>
+  Step 4:<br>
    Access https://console.cloud.google.com/apis/dashboard and click "Library"
-   <img width="1159" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/8d297418-61bf-452a-9d5a-450145e2a4b6">
-  Step 5:
-   <img width="969" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/1b20de21-8003-4320-80db-e5baaac4a759">
-  Step 6:
-   <img width="1786" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/b07ede7f-f116-4c9e-af36-55c0a94d2e16">
-  Step 7:
-   <img width="984" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/2f16850f-de57-4a5c-a312-503fa9a5630c">
-  Step 8:
-   <img width="692" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/1f205dde-e1ef-4be9-a5ae-5a98fa1b520b">
+   <img width="500" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/8d297418-61bf-452a-9d5a-450145e2a4b6"><br>
+  Step 5:<br>
+   <img width="500" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/1b20de21-8003-4320-80db-e5baaac4a759"><br>
+  Step 6:<br>
+   <img width="500" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/b07ede7f-f116-4c9e-af36-55c0a94d2e16"><br>
+  Step 7:<br>
+   <img width="500" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/2f16850f-de57-4a5c-a312-503fa9a5630c"><br>
+  Step 8:<br>
+   <img width="500" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/1f205dde-e1ef-4be9-a5ae-5a98fa1b520b"><br>
 
    
 4. In Project run command to build Docker:
