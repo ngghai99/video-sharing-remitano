@@ -58,7 +58,7 @@ or
   ```
 
 7. Open http://localhost:3000 to view project in the browser.
-## Unit Test
+## Run Test
  1. Backend
   - Gem: Rspec, factory_bot_rails, rspec-rails
  ```sh
