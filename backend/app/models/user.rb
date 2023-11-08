@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :videos, dependent: :destroy
 
   before_validation :downcase_email
-  validates :email, uniqueness: true, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "Invalid. Please Check It Agin." }
+  validates :email, uniqueness: true, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "Invalid. Please Check It Again." }
   validates :password, presence: true
   validate :password_length
 
