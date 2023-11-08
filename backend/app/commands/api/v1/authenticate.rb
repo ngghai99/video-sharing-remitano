@@ -11,8 +11,12 @@ module Api
 
       def call
         user = User.find_by(email: email)
-        unless user&.authenticate(password)
+
+        if user.blank?
           user = User.create!(email: email, password: password)
+        elsif !user&.authenticate(password)
+          errors.add(:error, "Please check your Email or Password.")
+          return nil
         end
 
         payload = { user_id: user.id }

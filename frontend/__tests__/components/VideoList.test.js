@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, waitFor, screen } from '@testing-library/react';
-import { VideoList } from './../components'
+import { VideoList } from '@/components'
 
 jest.mock('axios');
 jest.mock('@rails/actioncable', () => {

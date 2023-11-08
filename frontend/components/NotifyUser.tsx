@@ -13,11 +13,11 @@ toast.configure({
 export default function NotifyUser() {
   useEffect(() => {
     const cable = createConsumer(process.env.CABLE);
-
+    const storedToken = localStorage.getItem('accessTokenRemi') || null;
     const handleReceived = (data: { video: {
       email: any; title: any;
 }; }) => {
-      if (data.video) {
+      if (data.video && storedToken) {
         toast(`${data.video.email}: ${data.video.title}`);
       }
     };

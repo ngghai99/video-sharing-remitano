@@ -1,8 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { LoadingSpinner } from './../components'
-import Link from 'next/link'
+import { LoadingSpinner } from '@/components'
 
 const Nav = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -10,6 +9,7 @@ const Nav = () => {
   const [password, setPassword] = useState('');
   const [menuVisible, setMenuVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [authenError, setAuthenError] = useState(false);
 
   useEffect(() => {
     const initializeUser = async () => {
@@ -56,7 +56,7 @@ const Nav = () => {
       setEmail(user.email);
       window.location.reload();
     } catch (error) {
-      console.log('Login Fail:', error);
+      setAuthenError(true)
     }
   };
 
@@ -101,31 +101,36 @@ const Nav = () => {
           {loggedIn ? (
             <div data-testid="wellcome-user">
               <span className="navbar-text">Hi, {email}!</span>
-              <Link className="ms-2 btn btn-outline-success btn-share-movie" href="/share-movie">Share a movie</Link>
+              <a className="ms-2 btn btn-outline-success btn-share-movie" href="/share-movie">Share a movie</a>
               <button data-testid="logout-button" className="ms-2 btn btn btn-success btn-signout" onClick={handleLogout}>Logout</button>
             </div>
           ) : (
-            <form onSubmit={handleLogin} data-testid="login-form" className="form-login-custom">
-              <input
-                className="form-control me-2"
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <input
-                className="form-control me-2"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <button className="btn btn-outline-success btn-login" type="submit">
-                Login / Register
-              </button>
-            </form>
+            <>
+              <span className="text-danger">
+                {authenError && "Please check your Email or Password."}
+              </span>
+              <form onSubmit={handleLogin} data-testid="login-form" className="form-login-custom">
+                <input
+                  className="form-control me-2"
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <input
+                  className="form-control me-2"
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <button className="btn btn-outline-success btn-login" type="submit">
+                  Login / Register
+                </button>
+              </form>
+            </>
           )}
         </div>
       </div>
