@@ -18,12 +18,13 @@ module Api
           errors.add(:error, "Please check your Email or Password.")
           return nil
         end
-
         payload = { user_id: user.id }
         token = JwtTokenable.generate_jwt_token(payload)
         response_data = { user: user, token: token }
-
         return response_data.to_json
+
+      rescue StandardError => e
+        { success: false, error: e.message }
       end
     end
   end
