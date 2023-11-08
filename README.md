@@ -33,16 +33,35 @@
   DATABASE_HOST=db
   DATABASE_NAME=app_dev
   YOUTUBE_API_KEY=<--->
-  JWT_SECRET=<--->
+  #JWT_SECRET example: 
+  JWT_SECRET=de846910c295f4394ac29580bcd47637f62bc03a5abcd6adcdd025872e35af11526d577a0886b2d2973cc8b8b957457b0ceea6399e4d38f96ecec1f446cac7c1
+  #ACCESS_TOKEN example for Jest test:
   ACCESS_TOKEN=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE3MDA0NzAwMTB9.bBg85qTT8jHhTjmGtrxVvfYT7CgMrf4iRwYxyfUkD6Q
   IP_SERVER=http://localhost:3001
   IP_CLIENT=http://localhost:3000
   IP_CLIENT_NO_PORT=http://localhost/
   CABLE=ws://localhost:3001/cable
   ```
-4. How to get YOUTUBE_API_KEY
+4. How to get YOUTUBE_API_KEY:
+  Step 1: Access https://console.cloud.google.com/apis/dashboard
+  Step 2:
+   <img width="1408" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/5dd4e570-299f-47f1-9fc7-d73158f5ccdb">
+  Step 3:
+   <img width="933" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/83826af7-0392-4ce5-aedf-7468734af9d5">
+  Step 4:
+   Access https://console.cloud.google.com/apis/dashboard and click "Library"
+   <img width="1159" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/8d297418-61bf-452a-9d5a-450145e2a4b6">
+  Step 5:
+   <img width="969" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/1b20de21-8003-4320-80db-e5baaac4a759">
+  Step 6:
+   <img width="1786" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/b07ede7f-f116-4c9e-af36-55c0a94d2e16">
+  Step 7:
+   <img width="984" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/2f16850f-de57-4a5c-a312-503fa9a5630c">
+  Step 8:
+   <img width="692" alt="image" src="https://github.com/ngghai99/video-sharing-remitano/assets/103488335/1f205dde-e1ef-4be9-a5ae-5a98fa1b520b">
 
-5. In Project run command to build Docker:
+   
+4. In Project run command to build Docker:
   ```sh
   docker-compose up --build -d
   ```
