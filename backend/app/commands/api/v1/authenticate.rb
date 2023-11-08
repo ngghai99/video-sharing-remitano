@@ -24,7 +24,7 @@ module Api
         return response_data.to_json
 
       rescue StandardError => e
-        { success: false, error: e.message }
+        errors.add(:error, e)
       end
     end
   end
