@@ -9,7 +9,7 @@ const Nav = () => {
   const [password, setPassword] = useState('');
   const [menuVisible, setMenuVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [authenError, setAuthenError] = useState(false);
+  const [authenError, setAuthenError] = useState('');
 
   useEffect(() => {
     const initializeUser = async () => {
@@ -56,7 +56,7 @@ const Nav = () => {
       setEmail(user.email);
       window.location.reload();
     } catch (error) {
-      setAuthenError(true)
+      setAuthenError(error.response.data.error.join(", "))
     }
   };
 
@@ -107,7 +107,7 @@ const Nav = () => {
           ) : (
             <>
               <span className="text-danger">
-                {authenError && "Please check your Email or Password."}
+                {authenError ? authenError : null}
               </span>
               <form onSubmit={handleLogin} data-testid="login-form" className="form-login-custom">
                 <input
