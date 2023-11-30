@@ -19,6 +19,7 @@
    |       ReactJS       |      NextJS        | Node     |Bootstrap |
    | :------------:|:-------------:|:-----:|:-----:|
    |    18.2.0          |        13.3.4       |  v21.1.0    | 5.3.2|
+- Devops: Docker & DockerCompose
 
 ## Installation & Configuration
 
